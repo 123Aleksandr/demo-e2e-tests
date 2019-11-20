@@ -2,6 +2,7 @@ import allure
 from selene.support.jquery_style_selectors import s, ss
 
 from pages.common.common_page import CommonPage
+from pages.admin.projects_subpage import AddProjectSubPage
 from pages.admin.admin_page import AdminPage
 
 
@@ -12,5 +13,5 @@ class DashboardPage(CommonPage):
     @allure.step('Клик по кнопке добавления нового проекта')
     def click_add_project(self):
         s(self.add_project_button).click()
-        return AdminPage()
+        return AddProjectSubPage()
 

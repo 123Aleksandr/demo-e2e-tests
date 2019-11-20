@@ -4,13 +4,13 @@ import pytest
 import allure
 
 from selenium import webdriver
-
 from selene import config, browser
 from selene.browsers import BrowserName
 
+from utils import *
+from config import *
 from pages.auth.auth_page import AuthPage
 from pages.dashboard.dash_page import DashboardPage
-from config import *
 
 
 config.browser_name = BrowserName.CHROME
@@ -40,10 +40,14 @@ class TestProject:
 
 
 
-        # dash_page.check_page_title('Поиск и ведение объектов НСИ')
-
+    @allure.title('Добавление нового проекта (с дешборда), проверка отображения в списке проектов, удаление')
+    @allure.severity(allure.severity_level.CRITICAL)
     def test_add_new_project_from_admin_page(self):
         dash_page = AuthPage().auth()
-
-
+        add_project_page = dash_page.click_add_project()
+        add_project_page.set_name(get_object_name())
+        add_project_page.set_announcement(get_text(max_chars=160))
+        add_project_page.select_show_announcement(True)
+        add_project_page.select_project_view('suite_mode_single_baseline')
+        add_project_page.click_add_project()
 
