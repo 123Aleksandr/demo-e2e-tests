@@ -1,0 +1,8 @@
+*.pyc
+*~
+__pycache__
+pyvenv
+pyvenv.cfg
+/env
+.idea
+.DS_Store
