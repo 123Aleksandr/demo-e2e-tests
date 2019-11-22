@@ -1,10 +1,11 @@
 import allure
 
 from selene.support.by import link_text
-from selene.support.conditions import be
 from selene.support.jquery_style_selectors import s, ss
 
+from pages.helpers import *
 from pages.admin.admin_page import AdminPage
+from pages.admin.modal_windows import DeleteProjectModal
 
 
 class ProjectsSubPage(AdminPage):
@@ -14,7 +15,6 @@ class ProjectsSubPage(AdminPage):
     element_row = 'td:nth-child(1) > a'
     edit_icon = 'td > a > div.icon-small-edit'
     delete_icon = 'td > a > div.icon-small-delete'
-
 
     def _search_project_in_table(self, name):
         for item in ss(self.projects_table):
@@ -44,9 +44,10 @@ class ProjectsSubPage(AdminPage):
         return EditProjectSubPage()
 
     @allure.step('Клик по значку удаления проекта {name} в таблице проектов')
-    def click_project_edit_icon(self, name):
+    def click_project_delete_icon(self, name):
         item = self._search_project_in_table(name)
         item.s(self.delete_icon).click()
+        return DeleteProjectModal()
 
     @allure.step('Клик по кнопке добавления нового проекта')
     def click_add_project(self):
@@ -66,23 +67,20 @@ class AddProjectSubPage(AdminPage):
 
     @allure.step('Ввод названия "{name}" нового проекта')
     def set_name(self, name):
-        s(self.name_input).set_value(name)
+        input = s(self.name_input)
+        input.clear()
+        input.set_value(name)
 
     @allure.step('Ввод описания "{announcement}" нового проекта')
     def set_announcement(self, announcement):
-        s(self.announcement_input).set_value(announcement)
+        input = s(self.announcement_input)
+        input.clear()
+        input.set_value(announcement)
 
     @allure.step('Чекбокс отображения описания на странице: {check_value}')
     def select_show_announcement(self, check_value):
-        if not isinstance(check_value, bool):
-            raise TypeError('Указанное значение не является булевым!')
-        # driver.execute_script(("return document.getElementById('%s').checked") % item)
-        # element.get_attribute('checked')
         checkbox = s(self.show_announcement_check)
-        if (checkbox.is_selected() and check_value is True) or (not checkbox.is_selected() and check_value is False):
-            return True
-        elif (checkbox.is_selected() and check_value is False) or (not checkbox.is_selected() and check_value is True):
-            checkbox.click()
+        checkbox_select(checkbox, check_value)
 
     @allure.step('Выбор представления проекта: {param}')
     def select_project_view(self, param):
@@ -107,13 +105,6 @@ class EditProjectSubPage(AddProjectSubPage):
 
     @allure.step('Чекбокс окончания проекта: {check_value}')
     def select_is_completed(self, check_value):
-        if not isinstance(check_value, bool):
-            raise TypeError('Указанное значение не является булевым!')
-        # driver.execute_script(("return document.getElementById('%s').checked") % item)
-        # element.get_attribute('checked')
         checkbox = s(self.is_completed_check)
-        if (checkbox.is_selected() and check_value is True) or (not checkbox.is_selected() and check_value is False):
-            return True
-        elif (checkbox.is_selected() and check_value is False) or (not checkbox.is_selected() and check_value is True):
-            checkbox.click()
+        checkbox_select(checkbox, check_value)
 

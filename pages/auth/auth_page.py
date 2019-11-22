@@ -1,8 +1,7 @@
 import allure
-
 from selene.api import *
 from selene.browser import open_url
-from selene.support.jquery_style_selectors import s, ss
+from selene.support.jquery_style_selectors import s
 
 from config import BASE_URL, LOGIN, PASSWORD
 from pages.dashboard.dash_page import DashboardPage
@@ -10,9 +9,9 @@ from pages.dashboard.dash_page import DashboardPage
 
 class AuthPage(object):
 
-    username_input = '[id="name"]'
-    password_input = '[id="password"]'
-    submit_button = '[id="button_primary"]'
+    username_input = '#name'
+    password_input = '#password'
+    submit_button = '#button_primary'
 
     @allure.step('Авторизуемся..')
     def auth(self):

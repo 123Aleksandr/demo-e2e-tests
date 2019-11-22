@@ -1,8 +1,15 @@
+# git ignore
 *.pyc
 *~
+.pytest_cache
 __pycache__
 pyvenv
 pyvenv.cfg
-/env
+pip-selfcheck.json
+/Include
+/Scripts
+/Lib
+.idea/
+env/
 .idea
 .DS_Store
