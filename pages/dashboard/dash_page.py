@@ -3,6 +3,7 @@ from selene.support.by import link_text
 from selene.support.jquery_style_selectors import s, ss
 
 from pages.common.common_page import CommonPage
+from pages.project.overview_subpage import OverviewSubPage
 from pages.admin.projects_subpage import AddProjectSubPage
 
 
@@ -26,9 +27,5 @@ class DashboardPage(CommonPage):
     def click_by_project_title(self, title):
         item = self._search_project_in_table(title)
         item.s(link_text(title)).click()
-        return
-
-
-
-
+        return OverviewSubPage()
 

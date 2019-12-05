@@ -5,6 +5,7 @@ from selene.support.jquery_style_selectors import s, ss
 
 from pages.common.common_page import CommonPage
 from pages.project.cases_subpage import CaseSubPage
+from pages.project.overview_subpage import OverviewSubPage
 
 
 class CommonProjectPage(CommonPage):
@@ -23,7 +24,7 @@ class CommonProjectPage(CommonPage):
     def click_by_project_menu_item(self, item_name):
         if item_name == 'Overview':
             s(self.overview_button).click()
-            return self
+            return OverviewSubPage()
         elif item_name =='Todo':
             pass
         elif item_name =='Milestones':

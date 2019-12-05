@@ -21,11 +21,17 @@ class Subsection(object):
 
 class Case(object):
 
-    def __init__(self, case_type, section):
+    def __init__(self, case_type='text_test_case'):
 
-        # common attributes
         self.title = get_object_name()
-        # self.section =
-
-        # if case_type == 'exploratory_session':
+        if case_type == 'text_test_case':
+            self.preconditions = get_text(max_chars=100)
+            self.steps = get_text(max_chars=150)
+            self.result = get_text(max_chars=100)
+        elif case_type == 'step_test_case':
+            pass
+        elif case_type == 'session_test_case':
+            pass
+        else:
+            raise ValueError('Указаанного типа кейсов не существует!')
 

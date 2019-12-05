@@ -28,3 +28,27 @@ class DeleteProjectModal(object):
         s(self.delete_window_modal).s(self.cancel_button).click()
         return ProjectsSubPage()
 
+
+class AddSectionModal(object):
+
+    section_name_input = '#editSectionName'
+    section_description_input = '#editSectionDescription'
+    ok_section_button = '#editSectionSubmit'
+    cancel_section_button = '#editSectionForm > div.button-group.dialog-buttons-highlighted > a'
+
+    @allure.step('Ввод названия {name} нового раздела')
+    def set_name(self, name):
+        input = s(self.section_name_input)
+        input.set_value(name)
+
+    @allure.step('Ввод описания {desc} нового проекта')
+    def set_announcement(self, desc):
+        input = s(self.section_description_input)
+        input.set_value(desc)
+
+    @allure.step('Клик по кнопке подтверждения создания раздела')
+    def click_add_section(self):
+        from pages.project.cases_subpage import CaseSubPage
+        s(self.ok_section_button).click()
+        return CaseSubPage()
+

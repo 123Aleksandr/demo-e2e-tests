@@ -1,11 +1,10 @@
 import allure
-
 from selene.support.by import link_text
 from selene.support.jquery_style_selectors import s, ss
 
-from pages.helpers import *
 from pages.admin.admin_page import AdminPage
-from pages.admin.modal_windows import DeleteProjectModal
+from pages.helpers import *
+from pages.modal_windows import DeleteProjectModal
 
 
 class ProjectsSubPage(AdminPage):
@@ -57,21 +56,21 @@ class ProjectsSubPage(AdminPage):
 
 class AddProjectSubPage(AdminPage):
 
-    name_input = '[id="name"]'
-    announcement_input = '[id="announcement"]'
-    show_announcement_check = '[id="show_announcement"]'
-    radio_suite_mode_single = '[id="suite_mode_single"]'
-    radio_suite_mode_single_baseline = '[id="suite_mode_single_baseline"]'
-    radio_suite_mode_multi = '[id="suite_mode_multi"]'
+    name_input = '#name'
+    announcement_input = '#announcement'
+    show_announcement_check = '#show_announcement'
+    radio_suite_mode_single = '#suite_mode_single'
+    radio_suite_mode_single_baseline = '#suite_mode_single_baseline'
+    radio_suite_mode_multi = '#suite_mode_multi'
     add_project_button = 'button.button-left.button-positive.button-ok'
 
-    @allure.step('Ввод названия "{name}" нового проекта')
+    @allure.step('Ввод названия {name} нового проекта')
     def set_name(self, name):
         input = s(self.name_input)
         input.clear()
         input.set_value(name)
 
-    @allure.step('Ввод описания "{announcement}" нового проекта')
+    @allure.step('Ввод описания {announcement} нового проекта')
     def set_announcement(self, announcement):
         input = s(self.announcement_input)
         input.clear()
@@ -101,7 +100,7 @@ class AddProjectSubPage(AdminPage):
 
 class EditProjectSubPage(AddProjectSubPage):
 
-    is_completed_check = '[id="is_completed"]'
+    is_completed_check = '#is_completed'
 
     @allure.step('Чекбокс окончания проекта: {check_value}')
     def select_is_completed(self, check_value):
