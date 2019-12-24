@@ -4,8 +4,6 @@ from selene.api import *
 from selene.support.jquery_style_selectors import s, ss
 
 from pages.common.common_page import CommonPage
-from pages.project.cases_subpage import CaseSubPage
-from pages.project.overview_subpage import OverviewSubPage
 
 
 class CommonProjectPage(CommonPage):
@@ -23,6 +21,7 @@ class CommonProjectPage(CommonPage):
     @allure.step('Клик по по кнопке перехода в раздел {item_name} проекта')
     def click_by_project_menu_item(self, item_name):
         if item_name == 'Overview':
+            from pages.project.overview_subpage import OverviewSubPage
             s(self.overview_button).click()
             return OverviewSubPage()
         elif item_name =='Todo':
@@ -32,6 +31,7 @@ class CommonProjectPage(CommonPage):
         elif item_name =='Test Runs & Results':
             pass
         elif item_name =='Test Cases':
+            from pages.project.cases_subpage import CaseSubPage
             s(self.test_case_button).click()
             return CaseSubPage()
         elif item_name =='Reports':

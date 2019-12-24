@@ -1,6 +1,5 @@
 # Auth data
 
-BASE_URL = 'https://kukusing.testrail.io/'
+BASE_URL = 'https://kukusing1.testrail.io/'
 LOGIN = 'kukusing@yandex.ru'
-PASSWORD = 'HREssh2S0vPnB6FE77j/'
-
+PASSWORD = 'fpWgR7L0601EFhWq0JRA'
